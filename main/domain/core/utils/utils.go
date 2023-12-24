@@ -1,8 +1,15 @@
+/*
+ * @Author: coller
+ * @Date: 2023-12-20 21:46:14
+ * @LastEditors: coller
+ * @LastEditTime: 2023-12-24 17:03:11
+ * @Desc:
+ */
 package utils
 
 import (
-	"moss/domain/core/aggregate"
 	"reflect"
+	"selfx/domain/core/aggregate"
 	"time"
 )
 

@@ -3,13 +3,14 @@ package service
 import (
 	"encoding/json"
 	"errors"
-	"github.com/robfig/cron/v3"
-	"moss/domain/support/entity"
-	"moss/domain/support/factory"
-	"moss/domain/support/repository"
-	"moss/domain/support/utils"
-	"moss/infrastructure/general/message"
+	"selfx/domain/support/entity"
+	"selfx/domain/support/factory"
+	repo "selfx/domain/support/repository"
+	"selfx/domain/support/utils"
+	"selfx/infra/general/message"
 	"time"
+
+	"github.com/robfig/cron/v3"
 )
 
 var Plugin = NewPluginService()
@@ -98,14 +99,14 @@ func (p *PluginService) Pull(item *entity.Plugin) error {
 	return p.PullOptions(item)
 }
 func (p *PluginService) PullInfo(item *entity.Plugin) error {
-	info, err := repository.Plugin.GetInfo(item.Info.ID)
+	info, err := repo.Plugin.GetInfo(item.Info.ID)
 	if err != nil {
 		return err
 	}
 	return p.mergeInfo(info, item)
 }
 func (p *PluginService) PullOptions(item *entity.Plugin) error {
-	options, err := repository.Plugin.GetOptions(item.Info.ID)
+	options, err := repo.Plugin.GetOptions(item.Info.ID)
 	if err != nil {
 		return err
 	}
@@ -148,10 +149,10 @@ func (p *PluginService) mergeOptions(options []byte, item *entity.Plugin) error 
 }
 
 func (p *PluginService) SaveInfo(id string, info []byte) error {
-	return repository.Plugin.SaveInfo(id, info)
+	return repo.Plugin.SaveInfo(id, info)
 }
 func (p *PluginService) SaveOptions(id string, options []byte) error {
-	return repository.Plugin.SaveOptions(id, options)
+	return repo.Plugin.SaveOptions(id, options)
 }
 
 func (p *PluginService) Run(id string) error {

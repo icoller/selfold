@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-full" :class="{'p-0 xl:p-5':!store.isMobile}">
+  <div class="w-full h-full">
     <a-layout ref="layout" class="w-full h-full overflow-hidden layout" :class="{'rounded-xl':!store.isMobile}" :style="{backgroundColor:store.dark ? 'var(--color-menu-dark-bg)':''}">
       <Sider />
       <a-layout class="h-full">

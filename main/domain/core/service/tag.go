@@ -1,11 +1,18 @@
+/*
+ * @Author: coller
+ * @Date: 2023-12-20 21:46:14
+ * @LastEditors: coller
+ * @LastEditTime: 2023-12-24 17:03:20
+ * @Desc:
+ */
 package service
 
 import (
-	"moss/domain/core/entity"
-	"moss/domain/core/event"
-	"moss/domain/core/repository"
-	"moss/domain/core/repository/context"
-	"moss/infrastructure/general/message"
+	"selfx/domain/core/entity"
+	"selfx/domain/core/event"
+	"selfx/domain/core/repo"
+	"selfx/domain/core/repo/context"
+	"selfx/infra/general/message"
 	"strings"
 	"time"
 )
@@ -81,7 +88,7 @@ func (s *TagService) Create(item *entity.Tag) (err error) {
 	if item.CreateTime == 0 {
 		item.CreateTime = time.Now().Unix()
 	}
-	if err = repository.Tag.Create(item); err != nil {
+	if err = repo.Tag.Create(item); err != nil {
 		return
 	}
 	for _, e := range s.CreateAfterEvents {
@@ -105,7 +112,7 @@ func (s *TagService) CreateInBatches(items []entity.Tag, batchSize int) (err err
 			items[k].CreateTime = time.Now().Unix()
 		}
 	}
-	if err = repository.Tag.CreateInBatches(items, batchSize); err != nil {
+	if err = repo.Tag.CreateInBatches(items, batchSize); err != nil {
 		return
 	}
 	for _, item := range items {
@@ -128,7 +135,7 @@ func (s *TagService) Update(item *entity.Tag) (err error) {
 	if err = s.postCheck(item); err != nil {
 		return
 	}
-	if err = repository.Tag.Update(item); err != nil {
+	if err = repo.Tag.Update(item); err != nil {
 		return
 	}
 	for _, e := range s.UpdateAfterEvents {
@@ -162,7 +169,7 @@ func (s *TagService) Delete(id int) (err error) {
 			return
 		}
 	}
-	if err = repository.Tag.Delete(id); err != nil {
+	if err = repo.Tag.Delete(id); err != nil {
 		return
 	}
 	for _, e := range s.DeleteAfterEvents {
@@ -175,7 +182,7 @@ func (s *TagService) Get(id int) (res *entity.Tag, err error) {
 	if id == 0 {
 		return nil, message.ErrSlugRequired
 	}
-	if res, err = repository.Tag.Get(id); err != nil {
+	if res, err = repo.Tag.Get(id); err != nil {
 		return
 	}
 	if res.ID == 0 {
@@ -191,7 +198,7 @@ func (s *TagService) GetBySlug(slug string) (res *entity.Tag, err error) {
 	if slug == "" {
 		return nil, message.ErrIdRequired
 	}
-	if res, err = repository.Tag.GetBySlug(slug); err != nil {
+	if res, err = repo.Tag.GetBySlug(slug); err != nil {
 		return
 	}
 	if res.ID == 0 {
@@ -218,7 +225,7 @@ func (s *TagService) GetIdByName(name string) (id int, err error) {
 	if name == "" {
 		return 0, message.ErrNameRequired
 	}
-	return repository.Tag.GetIdByName(name)
+	return repo.Tag.GetIdByName(name)
 }
 
 // GetIdBySlug 通过slug获取ID
@@ -226,7 +233,7 @@ func (s *TagService) GetIdBySlug(slug string) (id int, err error) {
 	if slug == "" {
 		return 0, message.ErrSlugRequired
 	}
-	return repository.Tag.GetIdBySlug(slug)
+	return repo.Tag.GetIdBySlug(slug)
 }
 
 // GetIdByNameOrCreate 通过name获取主键,不存在则创建
@@ -252,18 +259,18 @@ func (s *TagService) CreateByNameReturnID(name string) (int, error) {
 }
 
 func (s *TagService) CountByWhere(where *context.Where) (res int64, err error) {
-	return repository.Tag.CountByWhere(where)
+	return repo.Tag.CountByWhere(where)
 }
 
 // CountTotal 统计总数
 func (s *TagService) CountTotal() (int64, error) {
-	return repository.Tag.CountTotal()
+	return repo.Tag.CountTotal()
 }
 
 ///////////////////////////////
 
 func (s *TagService) List(ctx *context.Context) (res []entity.Tag, err error) {
-	res, err = repository.Tag.List(ctx)
+	res, err = repo.Tag.List(ctx)
 	s.listAfterEvents(res)
 	return
 }
@@ -273,7 +280,7 @@ func (s *TagService) ListByIds(ctx *context.Context, ids []int) (res []entity.Ta
 	if len(ids) == 0 {
 		return
 	}
-	res, err = repository.Tag.ListByIds(ctx, ids)
+	res, err = repo.Tag.ListByIds(ctx, ids)
 	s.listAfterEvents(res)
 	return
 }
@@ -295,14 +302,14 @@ func (s *TagService) ListByArticleIds(ctx *context.Context, articleIds []int) (r
 
 // ListAfterCreateTime 根据创建时间调用列表
 func (s *TagService) ListAfterCreateTime(ctx *context.Context, t int64) (res []entity.Tag, err error) {
-	res, err = repository.Tag.ListAfterCreateTime(ctx, t)
+	res, err = repo.Tag.ListAfterCreateTime(ctx, t)
 	s.listAfterEvents(res)
 	return
 }
 
 // PseudorandomList 伪随机列表
 func (s *TagService) PseudorandomList(ctx *context.Context) (res []entity.Tag, err error) {
-	maxID, err := repository.Tag.MaxID()
+	maxID, err := repo.Tag.MaxID()
 	if err != nil {
 		return
 	}

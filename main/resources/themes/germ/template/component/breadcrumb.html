@@ -1,5 +1,3 @@
-
-
 {{ block breadcrumb(id) }}
     {{ list := Widget.Breadcrumb(id) }}
     {{ if len(list) == 0}}
@@ -7,7 +5,7 @@
     {{end}}
     {{ listLen := len(list)}}
     <div class="flex truncate items-center align-middle text-sm py-3 md:py-4">
-        <a class="flex items-center" href="/"><i class="mr-1 icon icon-home"></i>{{ Config.Site.Name }}</a>
+        <a class="flex text-gray-400 items-center" href="/"><i class="mr-3 icon icon-home"></i>{{ Config.Site.Name }}</a>
         <i class="mx-1 icon icon-right"></i>
         {{ range i, v := list }}
             <a class="{{ if i+1 == listLen }}text-gray-400 dark:text-neutral-500{{ end }} truncate" href="{{v.URL()}}">{{v.Name}}</a>

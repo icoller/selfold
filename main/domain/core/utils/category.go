@@ -1,10 +1,18 @@
+/*
+ * @Author: coller
+ * @Date: 2023-12-20 21:46:14
+ * @LastEditors: coller
+ * @LastEditTime: 2023-12-24 17:03:15
+ * @Desc:
+ */
 package utils
 
 import (
+	"selfx/domain/core/aggregate"
+	"selfx/domain/core/entity"
+	"selfx/infra/support/log"
+
 	"go.uber.org/zap"
-	"moss/domain/core/aggregate"
-	"moss/domain/core/entity"
-	"moss/infrastructure/support/log"
 )
 
 func CategoryEntityListToCategoryTreeList(items []entity.Category) (res []aggregate.CategoryTree) {

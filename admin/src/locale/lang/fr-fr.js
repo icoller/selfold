@@ -155,8 +155,8 @@ export default {
     random : 'Aléatoire',
     tls : 'TLS',
     needRestartApp : "Nécessite un redémarrage de l'application pour prendre effet",
-    mossAbout : "Moss signifie mousse ou mousse verte. J'espère que Moss peut être aussi tenace que la mousse, s'enracinant et prospérant partout.",
-    mossInstructions : "Ce programme est open-source sous la licence MIT et totalement gratuit à utiliser. N'hésitez pas à l'utiliser en toute confiance. Si vous avez des questions, vous pouvez communiquer avec l'auteur. Ne l'utilisez pas à des fins illégales.",
+    selfxAbout : "selfX signifie mousse ou mousse verte. J'espère que selfX peut être aussi tenace que la mousse, s'enracinant et prospérant partout.",
+    selfxInstructions : "Ce programme est open-source sous la licence MIT et totalement gratuit à utiliser. N'hésitez pas à l'utiliser en toute confiance. Si vous avez des questions, vous pouvez communiquer avec l'auteur. Ne l'utilisez pas à des fins illégales.",
 
     GenerateSlug : 'Générer automatiquement le slug',
     SaveArticleImages : 'Enregistrer les images de l\'article',

@@ -1,16 +1,13 @@
 {{extends "./layout/layout.html"}}
 {{import "./component/article_list.html"}}
 {{import "./component/breadcrumb.html" }}
-
 {{block main()}}
-
     {{ tags := Tag().Limit(10).ListByArticleID(Data.ID) }}
-    {{ listByCategory :=Article().Limit(10).ListByCategoryID(Data.CategoryID) }}
-
-    <article class="card leading-8">
+    {{ listByCategory :=Article().Limit(10).ListByCategoryID(Data.ID,Data.CategoryID) }}
+    <article class="leading-8">
         {{yield breadcrumb(id=Data.CategoryID)}}
-        <h1 class="text-xl md:text-3xl font-bold text-black dark:text-neutral-200">{{ Data.Title }}</h1>
-        <p class="pb-3 pt-1 mb-3 flex items-center border-b text-sm text-gray-400 dark:text-neutral-400 dark:border-neutral-600">
+        <h1 class="text-xl font-bold text-black md:text-3xl dark:text-neutral-200">{{ Data.Title }}</h1>
+        <p class="flex items-center pt-1 pb-3 mb-3 text-sm text-gray-400 dark:text-neutral-400 dark:border-neutral-600">
             <span><i class="mr-1 icon icon-time"></i>{{ Data.CreateTimeFormat() }}</span>
             {{ if Data.Views > 0}}
             <span class="ml-3"><i class="mr-1 icon icon-view"></i>{{ Data.Views }}</span>
@@ -19,9 +16,9 @@
         {{ Data.Content | raw}}
 
         {{ if len(tags) > 0}}
-        <ul class="tags text-sm py-6">
+        <ul class="py-6 text-sm tags">
             {{ range i, v := tags }}
-            <li><a href="{{v.URL()}}"><i class="icon icon-tag mr-1"></i>{{v.Name}}</a></li>
+            <li><a href="{{v.URL()}}"><i class="mr-1 icon icon-tag"></i>{{v.Name}}</a></li>
             {{ end }}
         </ul>
         {{ end }}
@@ -58,7 +55,5 @@
                 localStorage.setItem("mark", mark.toString());
             }
         }
-
     </script>
-
 {{end}}

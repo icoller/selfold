@@ -2,17 +2,18 @@ package plugins
 
 import (
 	"bytes"
+	"image"
+	"selfx/domain/config"
+	"selfx/domain/config/entity"
+	configService "selfx/domain/config/service"
+	"selfx/domain/core/repo/context"
+	"selfx/domain/core/service"
+	pluginEntity "selfx/domain/support/entity"
+	"selfx/infra/utils/request"
+	"strings"
+
 	"github.com/PuerkitoBio/goquery"
 	"go.uber.org/zap"
-	"image"
-	"moss/domain/config"
-	"moss/domain/config/entity"
-	configService "moss/domain/config/service"
-	"moss/domain/core/repository/context"
-	"moss/domain/core/service"
-	pluginEntity "moss/domain/support/entity"
-	"moss/infrastructure/utils/request"
-	"strings"
 )
 
 type MakeCarousel struct {

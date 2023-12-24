@@ -1,8 +1,8 @@
 package entity
 
 import (
-	"moss/domain/config"
-	"moss/domain/core/vo"
+	"selfx/domain/config"
+	"selfx/domain/core/vo"
 	"strings"
 	"time"
 )

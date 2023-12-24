@@ -1,7 +1,7 @@
 package event
 
 import (
-	"moss/domain/core/entity"
+	"selfx/domain/core/entity"
 )
 
 type TagCreateBefore interface {

@@ -156,8 +156,8 @@ export default {
     random:'Casuale',
     tls:'TLS',
     needRestartApp:'Richiede il riavvio dell applicazione per avere effetto',
-    mossAbout:'Moss significa muschio o muschio verde. Spero che Moss possa essere tenace come il muschio, radicarsi e prosperare ovunque.',
-    mossInstructions:'Questo programma è open-source sotto la Licenza MIT e completamente gratuito da usare. Sentiti libero di usarlo con fiducia. Se hai domande',
+    selfxAbout:'selfX significa muschio o muschio verde. Spero che selfX possa essere tenace come il muschio, radicarsi e prosperare ovunque.',
+    selfxInstructions:'Questo programma è open-source sotto la Licenza MIT e completamente gratuito da usare. Sentiti libero di usarlo con fiducia. Se hai domande',
 
 
     GenerateSlug: "Genera automaticamente lo slug",

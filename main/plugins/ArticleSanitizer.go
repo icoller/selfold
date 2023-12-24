@@ -1,13 +1,14 @@
 package plugins
 
 import (
+	"selfx/domain/core/entity"
+	"selfx/domain/core/service"
+	pluginEntity "selfx/domain/support/entity"
+	"strings"
+
 	"github.com/PuerkitoBio/goquery"
 	"github.com/microcosm-cc/bluemonday"
 	"go.uber.org/zap"
-	"moss/domain/core/entity"
-	"moss/domain/core/service"
-	pluginEntity "moss/domain/support/entity"
-	"strings"
 )
 
 type ArticleSanitizer struct {

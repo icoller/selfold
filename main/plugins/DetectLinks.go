@@ -3,14 +3,15 @@ package plugins
 import (
 	"bytes"
 	"errors"
+	"selfx/domain/config"
+	"selfx/domain/core/entity"
+	"selfx/domain/core/service"
+	pluginEntity "selfx/domain/support/entity"
+	"selfx/infra/utils/request"
+	"strings"
+
 	"github.com/PuerkitoBio/goquery"
 	"go.uber.org/zap"
-	"moss/domain/config"
-	"moss/domain/core/entity"
-	"moss/domain/core/service"
-	pluginEntity "moss/domain/support/entity"
-	"moss/infrastructure/utils/request"
-	"strings"
 )
 
 type DetectLinks struct {

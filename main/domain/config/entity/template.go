@@ -1,3 +1,10 @@
+/*
+ * @Author: coller
+ * @Date: 2023-12-20 21:46:14
+ * @LastEditors: coller
+ * @LastEditTime: 2023-12-24 17:07:37
+ * @Desc:
+ */
 package entity
 
 type Template struct {
@@ -57,6 +64,6 @@ func NewTemplate() *Template {
 		CategoryPageList: &TemplateList{Limit: 20, Order: "id desc"},
 		TagPageList:      &TemplateList{Limit: 20},
 		TagCloud:         &TemplateTagCloud{Limit: 15, Order: "id asc", Select: []int{}},
-		Footer:           `©2023 Powered by <a href="https://github.com/deep-project/moss"><strong>Moss</strong></a>`,
+		Footer:           `©2023 Powered by <a href="https://github.com/icoller/selfx"><strong>selfX</strong></a>`,
 	}
 }

@@ -1,8 +1,8 @@
 package entity
 
 import (
-	"moss/infrastructure/support/cache/core"
-	"moss/infrastructure/utils/timex"
+	"selfx/infra/support/cache/core"
+	"selfx/infra/utils/timex"
 )
 
 type Cache struct {

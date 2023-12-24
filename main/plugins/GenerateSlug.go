@@ -1,6 +1,11 @@
 package plugins
 
 import (
+	"selfx/domain/core/entity"
+	"selfx/domain/core/service"
+	pluginEntity "selfx/domain/support/entity"
+	"strconv"
+
 	"github.com/duke-git/lancet/v2/random"
 	"github.com/jaevor/go-nanoid"
 	"github.com/rs/xid"
@@ -8,10 +13,6 @@ import (
 	"github.com/speps/go-hashids/v2"
 	"github.com/yitter/idgenerator-go/idgen"
 	"go.uber.org/zap"
-	"moss/domain/core/entity"
-	"moss/domain/core/service"
-	pluginEntity "moss/domain/support/entity"
-	"strconv"
 )
 
 type GenerateSlug struct {
@@ -105,7 +106,7 @@ func (e *GenerateSlugEvent) makeSlug() (res string, err error) {
 	return
 }
 
-var generateIdEventHashIdsHandle, _ = hashids.NewWithData(&hashids.HashIDData{Salt: "moss", Alphabet: hashids.DefaultAlphabet})
+var generateIdEventHashIdsHandle, _ = hashids.NewWithData(&hashids.HashIDData{Salt: "selfx", Alphabet: hashids.DefaultAlphabet})
 
 func (e *GenerateSlugEvent) hashids(id int64) (string, error) {
 	return generateIdEventHashIdsHandle.EncodeInt64([]int64{id})

@@ -1,11 +1,11 @@
 package service
 
 import (
-	"moss/domain/core/entity"
-	"moss/domain/core/event"
-	"moss/domain/core/repository"
-	"moss/domain/core/repository/context"
-	"moss/infrastructure/general/message"
+	"selfx/domain/core/entity"
+	"selfx/domain/core/event"
+	"selfx/domain/core/repo"
+	"selfx/domain/core/repo/context"
+	"selfx/infra/general/message"
 	"strings"
 	"time"
 )
@@ -74,7 +74,7 @@ func (s *LinkService) Create(item *entity.Link) (err error) {
 	if item.CreateTime == 0 {
 		item.CreateTime = time.Now().Unix()
 	}
-	if err = repository.Link.Create(item); err != nil {
+	if err = repo.Link.Create(item); err != nil {
 		return
 	}
 	for _, e := range s.CreateAfterEvents {
@@ -95,7 +95,7 @@ func (s *LinkService) Update(item *entity.Link) (err error) {
 	if err = s.postCheck(item); err != nil {
 		return
 	}
-	if err = repository.Link.Update(item); err != nil {
+	if err = repo.Link.Update(item); err != nil {
 		return
 	}
 	for _, e := range s.UpdateAfterEvents {
@@ -123,7 +123,7 @@ func (s *LinkService) Delete(id int) (err error) {
 			return
 		}
 	}
-	if err = repository.Link.Delete(id); err != nil {
+	if err = repo.Link.Delete(id); err != nil {
 		return
 	}
 	for _, e := range s.DeleteAfterEvents {
@@ -145,7 +145,7 @@ func (s *LinkService) Get(id int) (res *entity.Link, err error) {
 	if id == 0 {
 		return nil, message.ErrIdRequired
 	}
-	if res, err = repository.Link.Get(id); err != nil {
+	if res, err = repo.Link.Get(id); err != nil {
 		return
 	}
 	if res.ID == 0 {
@@ -161,31 +161,31 @@ func (s *LinkService) ExistsURL(url string) (bool, error) {
 	if url == "" {
 		return false, message.ErrUrlRequired
 	}
-	id, err := repository.Link.GetIdByURL(url)
+	id, err := repo.Link.GetIdByURL(url)
 	return id > 0, err
 }
 
 //////////////////
 
 func (s *LinkService) CountByWhere(where *context.Where) (res int64, err error) {
-	return repository.Link.CountByWhere(where)
+	return repo.Link.CountByWhere(where)
 }
 
 // CountTotal 统计总数
 func (s *LinkService) CountTotal() (int64, error) {
-	return repository.Link.CountTotal()
+	return repo.Link.CountTotal()
 }
 
 func (s *LinkService) DisableLink(id int) error {
-	return repository.Link.DisableLink(id)
+	return repo.Link.DisableLink(id)
 }
 
 func (s *LinkService) EnableLink(id int) error {
-	return repository.Link.EnableLink(id)
+	return repo.Link.EnableLink(id)
 }
 
 func (s *LinkService) List(ctx *context.Context) (res []entity.Link, err error) {
-	res, err = repository.Link.List(ctx)
+	res, err = repo.Link.List(ctx)
 	s.listAfterEvents(res)
 	return
 }
@@ -195,14 +195,14 @@ func (s *LinkService) ListByIds(ctx *context.Context, ids []int) (res []entity.L
 	if len(ids) == 0 {
 		return
 	}
-	res, err = repository.Link.ListByIds(ctx, ids)
+	res, err = repo.Link.ListByIds(ctx, ids)
 	s.listAfterEvents(res)
 	return
 }
 
 // ListPublic 前台公开列表
 func (s *LinkService) ListPublic(ctx *context.Context) (res []entity.Link, err error) {
-	if res, err = repository.Link.ListPublic(ctx); err != nil {
+	if res, err = repo.Link.ListPublic(ctx); err != nil {
 		return
 	}
 	s.listAfterEvents(res)
@@ -217,12 +217,12 @@ func (s *LinkService) ListLikeURL(ctx *context.Context, url string) (res []entit
 	url = strings.TrimPrefix(url, "http://")
 	url = strings.TrimPrefix(url, "https://")
 	url = strings.TrimPrefix(url, "//")
-	return repository.Link.ListLikeURL(ctx, url)
+	return repo.Link.ListLikeURL(ctx, url)
 }
 
 // ListDetectLink 开启检查的链接列表
 func (s *LinkService) ListDetectLink(ctx *context.Context) (res []entity.Link, err error) {
-	list, err := repository.Link.ListDetectLink(ctx)
+	list, err := repo.Link.ListDetectLink(ctx)
 	if err != nil {
 		return
 	}

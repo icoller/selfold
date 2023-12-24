@@ -1,13 +1,13 @@
 <template>
-  <a-card class="w-full" :title="$t('about') + ' Moss'" :bordered="false">
+  <a-card class="w-full" :title="$t('about') + ' SelfX'" :bordered="false">
     <div v-if="appInfo" class="mb-2 leading-8 italic">
       version {{ appInfo?.version }}
     </div>
     <div class="mb-2 leading-8">
-      {{ $t('mossAbout') }}<br>{{ $t('mossInstructions') }}
+      {{ $t('selfxAbout') }}<br>{{ $t('selfxInstructions') }}
     </div>
     <a-link @click="useOpenLink">
-      <template #icon><icon-github /></template>https://github.com/deep-project/moss
+      <template #icon><icon-github /></template>https://github.com/icoller/selfx
     </a-link>
   </a-card>
 </template>

@@ -1,4 +1,3 @@
-
 import {useStorage,useWindowSize} from "@vueuse/core";
 import {useNavigatorLocale} from "@/locale";
 import {defineStore} from "pinia";
@@ -11,7 +10,7 @@ export const useStore = defineStore('default', {
         locale: useStorage("locale", useNavigatorLocale()),
         token: useStorage("token", ""),
         siderCollapsed : useStorage("sider_collapsed", useDefaultSiderCollapsed()),
-        siderWidth: useStorage("sider_width", 180), // , localStorage, { listenToStorageChanges: false }
+        siderWidth: useStorage("sider_width", 130), // , localStorage, { listenToStorageChanges: false }
         windowSize:useWindowSize(),
         dark: useStorage("dark", useNavigatorDark()),
         color: useStorage("color", "#4CA1F7"),

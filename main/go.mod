@@ -1,4 +1,4 @@
-module moss
+module selfx
 
 go 1.19
 

@@ -3,11 +3,11 @@ package plugins
 import (
 	"encoding/json"
 	"fmt"
-	"moss/domain/core/entity"
-	"moss/domain/core/service"
-	pluginEntity "moss/domain/support/entity"
-	"moss/infrastructure/support/cache"
-	"moss/infrastructure/utils/request"
+	"selfx/domain/core/entity"
+	"selfx/domain/core/service"
+	pluginEntity "selfx/domain/support/entity"
+	"selfx/infra/support/cache"
+	"selfx/infra/utils/request"
 	"time"
 
 	"github.com/bitly/go-simplejson"

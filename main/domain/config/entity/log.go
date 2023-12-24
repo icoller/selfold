@@ -2,9 +2,10 @@ package entity
 
 import (
 	"fmt"
-	"go.uber.org/zap/zapcore"
-	"moss/infrastructure/general/constant"
 	"path/filepath"
+	"selfx/infra/general/constant"
+
+	"go.uber.org/zap/zapcore"
 )
 
 type Log struct {

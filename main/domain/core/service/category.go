@@ -1,16 +1,17 @@
 package service
 
 import (
-	"github.com/duke-git/lancet/v2/slice"
-	"moss/domain/core/aggregate"
-	"moss/domain/core/entity"
-	"moss/domain/core/event"
-	"moss/domain/core/repository"
-	"moss/domain/core/repository/context"
-	"moss/domain/core/utils"
-	"moss/infrastructure/general/message"
+	"selfx/domain/core/aggregate"
+	"selfx/domain/core/entity"
+	"selfx/domain/core/event"
+	"selfx/domain/core/repo"
+	"selfx/domain/core/repo/context"
+	"selfx/domain/core/utils"
+	"selfx/infra/general/message"
 	"strings"
 	"time"
+
+	"github.com/duke-git/lancet/v2/slice"
 )
 
 var Category = new(CategoryService)
@@ -76,7 +77,7 @@ func (s *CategoryService) Create(item *entity.Category) (err error) {
 	if item.CreateTime == 0 {
 		item.CreateTime = time.Now().Unix()
 	}
-	if err = repository.Category.Create(item); err != nil {
+	if err = repo.Category.Create(item); err != nil {
 		return
 	}
 	for _, e := range s.CreateAfterEvents {
@@ -100,7 +101,7 @@ func (s *CategoryService) CreateInBatches(items []entity.Category, batchSize int
 			items[k].CreateTime = time.Now().Unix()
 		}
 	}
-	if err = repository.Category.CreateInBatches(items, batchSize); err != nil {
+	if err = repo.Category.CreateInBatches(items, batchSize); err != nil {
 		return
 	}
 	for _, item := range items {
@@ -123,7 +124,7 @@ func (s *CategoryService) Update(item *entity.Category) (err error) {
 	if err = s.postCheck(item); err != nil {
 		return
 	}
-	if err = repository.Category.Update(item); err != nil {
+	if err = repo.Category.Update(item); err != nil {
 		return
 	}
 	for _, e := range s.UpdateAfterEvents {
@@ -157,7 +158,7 @@ func (s *CategoryService) Delete(id int) (err error) {
 			return
 		}
 	}
-	if err = repository.Category.Delete(id); err != nil {
+	if err = repo.Category.Delete(id); err != nil {
 		return
 	}
 	for _, e := range s.DeleteAfterEvents {
@@ -179,7 +180,7 @@ func (s *CategoryService) Get(id int) (res *entity.Category, err error) {
 	if id == 0 {
 		return nil, message.ErrIdRequired
 	}
-	if res, err = repository.Category.Get(id); err != nil {
+	if res, err = repo.Category.Get(id); err != nil {
 		return
 	}
 	if res.ID == 0 {
@@ -206,7 +207,7 @@ func (s *CategoryService) GetByName(name string) (res *entity.Category, err erro
 	if name == "" {
 		return nil, message.ErrNameRequired
 	}
-	if res, err = repository.Category.GetByName(name); err != nil {
+	if res, err = repo.Category.GetByName(name); err != nil {
 		return
 	}
 	if res.ID == 0 {
@@ -222,7 +223,7 @@ func (s *CategoryService) GetBySlug(slug string) (res *entity.Category, err erro
 	if slug == "" {
 		return nil, message.ErrSlugRequired
 	}
-	if res, err = repository.Category.GetBySlug(slug); err != nil {
+	if res, err = repo.Category.GetBySlug(slug); err != nil {
 		return
 	}
 	if res.ID == 0 {
@@ -238,7 +239,7 @@ func (s *CategoryService) ExistsSlug(slug string) (bool, error) {
 	if slug == "" {
 		return false, message.ErrSlugRequired
 	}
-	id, err := repository.Category.GetIdBySlug(slug)
+	id, err := repo.Category.GetIdBySlug(slug)
 	return id > 0, err
 }
 
@@ -246,31 +247,31 @@ func (s *CategoryService) ExistsName(name string) (bool, error) {
 	if name == "" {
 		return false, message.ErrNameRequired
 	}
-	id, err := repository.Category.GetIdByName(name)
+	id, err := repo.Category.GetIdByName(name)
 	return id > 0, err
 }
 
 func (s *CategoryService) CountByWhere(where *context.Where) (res int64, err error) {
-	return repository.Category.CountByWhere(where)
+	return repo.Category.CountByWhere(where)
 }
 
 // CountTotal 统计总数
 func (s *CategoryService) CountTotal() (int64, error) {
-	return repository.Category.CountTotal()
+	return repo.Category.CountTotal()
 }
 
 //////////////////////////////////////////
 //////////////////////////////////////////
 
 func (s *CategoryService) List(ctx *context.Context) (res []entity.Category, err error) {
-	res, err = repository.Category.List(ctx)
+	res, err = repo.Category.List(ctx)
 	s.listAfterEvents(res)
 	return
 }
 
 // ListByIds 通过ids获取列表
 func (s *CategoryService) ListByIds(ctx *context.Context, ids []int) (res []entity.Category, err error) {
-	res, err = repository.Category.ListByIds(ctx, ids)
+	res, err = repo.Category.ListByIds(ctx, ids)
 	s.listAfterEvents(res)
 	return
 }
@@ -282,21 +283,21 @@ func (s *CategoryService) ListByParentID(ctx *context.Context, parentID int) (re
 
 // ListByParentIds 通过parentIds 获取列表
 func (s *CategoryService) ListByParentIds(ctx *context.Context, ids []int) (res []entity.Category, err error) {
-	res, err = repository.Category.ListByParentIds(ctx, ids)
+	res, err = repo.Category.ListByParentIds(ctx, ids)
 	s.listAfterEvents(res)
 	return
 }
 
 // ListAfterCreateTime 根据创建时间调用列表
 func (s *CategoryService) ListAfterCreateTime(ctx *context.Context, t int64) (res []entity.Category, err error) {
-	res, err = repository.Category.ListAfterCreateTime(ctx, t)
+	res, err = repo.Category.ListAfterCreateTime(ctx, t)
 	s.listAfterEvents(res)
 	return
 }
 
 // PseudorandomList 伪随机列表
 func (s *CategoryService) PseudorandomList(ctx *context.Context) (res []entity.Category, err error) {
-	maxID, err := repository.Category.MaxID()
+	maxID, err := repo.Category.MaxID()
 	if err != nil {
 		return
 	}
@@ -317,7 +318,7 @@ func (s *CategoryService) GetWithParent(id int) (res []entity.Category, err erro
 	if id <= 0 {
 		return
 	}
-	res, err = repository.Category.GetWithParent(id)
+	res, err = repo.Category.GetWithParent(id)
 	s.listAfterEvents(res)
 	return
 }
@@ -381,5 +382,5 @@ func (s *CategoryService) ListByCategoriesWithChildren(ctx *context.Context, lis
 
 // BatchSetParentCategory 批量设置父分类
 func (s *CategoryService) BatchSetParentCategory(parentID int, ids []int) error {
-	return repository.Category.BatchSetParentCategory(parentID, ids)
+	return repo.Category.BatchSetParentCategory(parentID, ids)
 }

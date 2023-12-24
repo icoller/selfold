@@ -82,25 +82,25 @@ systemctl restart docker
 
 ### 2.1 创建原始目录
 ```
-mkdir -p moss
+mkdir -p selfx
 ```
 ### 2.2 创建Dockerfile
 
-可执行程序连接按需修改，下载链接在[release页面](https://github.com/deep-project/moss/releases)获取
+可执行程序连接按需修改，下载链接在[release页面](https://github.com/icoller/selfx/releases)获取
 
 ```
-https://github.com/deep-project/moss/releases/download/v0.1.1/moss_linux_amd64
+https://github.com/icoller/selfx/releases/download/v0.1.1/selfx_linux_amd64
 ```
 当国内因为网络问题无法连接`github`时，可以使用`ghproxy`等进行加速
 ```
-https://ghproxy.com/https://github.com/deep-project/moss/releases/download/v0.1.1/moss_linux_amd64
+https://ghproxy.com/https://github.com/icoller/selfx/releases/download/v0.1.1/selfx_linux_amd64
 ```
 - 创建ockerfile
 
 以下是个完整命令复制到终端运行
 
 ```
-cat > ./moss/Dockerfile <<EOF
+cat > ./selfx/Dockerfile <<EOF
 # 使用 golang:alpine3.18 作为基础镜像，该镜像包含了 Golang 环境和 Alpine 3.18 发行版
 FROM golang:alpine3.18
 
@@ -112,22 +112,22 @@ RUN echo "https://mirrors.ustc.edu.cn/alpine/v3.18/main" > /etc/apk/repositories
 RUN apk update && apk upgrade && \
     apk add --no-cache wget && \
     mkdir -p /app && \
-    mkdir -p /app/mosscms && \
-    wget -O /app/moss https://github.com/deep-project/moss/releases/download/v0.1.1/moss_linux_amd64 && \
-    chmod +x /app/moss
+    mkdir -p /app/selfx && \
+    wget -O /app/selfx https://github.com/icoller/selfx/releases/download/v0.1.1/selfx_linux_amd64 && \
+    chmod +x /app/selfx
 
 # 安装时区数据包，并将时区设置为 Asia/Shanghai
 RUN apk --no-cache add tzdata
 RUN echo "Asia/Shanghai" > /etc/timezone
 
-# 设置工作目录为 /app/mosscms
-WORKDIR /app/mosscms
+# 设置工作目录为 /app/selfx
+WORKDIR /app/selfx
 
 # 将容器的 9008 端口暴露出来，允许外部访问
 EXPOSE 9008
 
-# 定义容器启动时执行的默认命令为 /app/moss
-CMD ["/app/moss"]
+# 定义容器启动时执行的默认命令为 /app/selfx
+CMD ["/app/selfx"]
 
 EOF
 ```
@@ -135,16 +135,16 @@ EOF
 
 - 创建配置文件目录
 ```
-mkdir -p ./moss/data
+mkdir -p ./selfx/data
 ```
 - 创建配置文件
 
 以下是个完整命令复制到终端运行
 ```
-cat > ./moss/data/conf.toml <<EOF
+cat > ./selfx/data/conf.toml <<EOF
 addr = ':9008'
 db = 'sqlite'
-dsn = './moss.db?_pragma=journal_mode(WAL)'
+dsn = './selfx.db?_pragma=journal_mode(WAL)'
 
 EOF
 
@@ -153,14 +153,14 @@ EOF
 ### 2.4 创建镜像
 - 进入目录
 ```
-cd moss
+cd selfx
 ```
 - 创建镜像
 ```
 # docker build: 用于构建 Docker 镜像的命令
-# -t moss:0.1.1: 指定构建的镜像名称为 moss，标签为 0.1.1
+# -t selfx:0.1.1: 指定构建的镜像名称为 selfx，标签为 0.1.1
 # .: 构建上下文路径，Docker 将在该路径下查找 Dockerfile 和相关资源来构建镜像
-docker build -t moss:0.1.1 .
+docker build -t selfx:0.1.1 .
 
 ```
 ## 3. 运行容器
@@ -168,11 +168,11 @@ docker build -t moss:0.1.1 .
 
 ```
 docker run -d \
---name moss \
+--name selfx \
 -p 9008:9008 \
--v ./data/conf.toml:/app/mosscms/conf.toml \
--v ./data:/app/mosscms \
-moss:0.1.1
+-v ./data/conf.toml:/app/selfx/conf.toml \
+-v ./data:/app/selfx \
+selfx:0.1.1
 ```
 
 通过`http://IP:9008`进行访问
@@ -186,14 +186,14 @@ moss:0.1.1
 cat >docker-compose.yml <<EOF
 version: '3'
 services:
-  moss:
-    image: moss:0.1.1
-    container_name: moss
+  selfx:
+    image: selfx:0.1.1
+    container_name: selfx
     ports:
       - "9008:9008"
     volumes:
-      - ./data/conf.toml:/app/mosscms/conf.toml
-      - ./data:/app/mosscms
+      - ./data/conf.toml:/app/selfx/conf.toml
+      - ./data:/app/selfx
     restart: always
 EOF
 ```

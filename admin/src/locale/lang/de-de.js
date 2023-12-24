@@ -155,8 +155,8 @@ export default {
     random: 'Zufällig',
     tls: 'TLS',
     needRestartApp: 'Erfordert einen Neustart der Anwendung, um wirksam zu sein',
-    mossAbout: 'Moss bedeutet Moos oder grünes Moos. Ich hoffe, dass Moss genauso widerstandsfähig wie Moos ist und überall Wurzeln schlägt und gedeiht.',
-    mossInstructions: 'Dieses Programm ist unter der MIT-Lizenz open-source und vollständig kostenlos zu verwenden. Bitte verwenden Sie es mit Vertrauen. Wenn Sie Fragen haben, können Sie mit dem Autor kommunizieren. Verwenden Sie es nicht für illegale Zwecke.',
+    selfxAbout: 'SelfX bedeutet Moos oder grünes Moos. Ich hoffe, dass SelfX genauso widerstandsfähig wie Moos ist und überall Wurzeln schlägt und gedeiht.',
+    selfxInstructions: 'Dieses Programm ist unter der MIT-Lizenz open-source und vollständig kostenlos zu verwenden. Bitte verwenden Sie es mit Vertrauen. Wenn Sie Fragen haben, können Sie mit dem Autor kommunizieren. Verwenden Sie es nicht für illegale Zwecke.',
 
 
     GenerateSlug: 'Slug automatisch generieren',

@@ -2,11 +2,12 @@ package entity
 
 import (
 	"errors"
+	"selfx/infra/utils/timex"
+	"time"
+
 	"github.com/brianvoe/sjwt"
 	"github.com/duke-git/lancet/v2/random"
 	"golang.org/x/crypto/bcrypt"
-	"moss/infrastructure/utils/timex"
-	"time"
 )
 
 type Admin struct {

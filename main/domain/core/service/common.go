@@ -1,6 +1,13 @@
+/*
+ * @Author: coller
+ * @Date: 2023-12-20 21:46:14
+ * @LastEditors: coller
+ * @LastEditTime: 2023-12-24 17:03:37
+ * @Desc:
+ */
 package service
 
-import "moss/infrastructure/utils"
+import "selfx/infra/utils"
 
 // 根据最大ID和限制计算伪随机id集合
 func pseudorandomIds(maxID, limit int) (res []int) {

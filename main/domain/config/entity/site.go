@@ -1,8 +1,16 @@
+/*
+ * @Author: coller
+ * @Date: 2023-12-20 21:46:14
+ * @LastEditors: coller
+ * @LastEditTime: 2023-12-24 17:07:58
+ * @Desc:
+ */
 package entity
 
 import (
-	"github.com/duke-git/lancet/v2/random"
 	"strings"
+
+	"github.com/duke-git/lancet/v2/random"
 )
 
 type Site struct {
@@ -15,7 +23,7 @@ type Site struct {
 }
 
 func NewSite() *Site {
-	return &Site{Name: "moss", Title: "Hello Moss", Salt: random.RandString(10)}
+	return &Site{Name: "selfx", Title: "Hello selfX", Salt: random.RandString(10)}
 }
 
 func (*Site) ConfigID() string {

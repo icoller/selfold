@@ -1,14 +1,22 @@
+/*
+ * @Author: coller
+ * @Date: 2023-12-20 21:46:14
+ * @LastEditors: coller
+ * @LastEditTime: 2023-12-24 16:58:46
+ * @Desc:
+ */
 package plugins
 
 import (
 	"fmt"
+	appService "selfx/app/service"
+	"selfx/domain/config"
+	"selfx/domain/core/entity"
+	"selfx/domain/core/service"
+	pluginEntity "selfx/domain/support/entity"
+	"selfx/infra/support/cache"
+
 	"go.uber.org/zap"
-	appService "moss/application/service"
-	"moss/domain/config"
-	"moss/domain/core/entity"
-	"moss/domain/core/service"
-	pluginEntity "moss/domain/support/entity"
-	"moss/infrastructure/support/cache"
 )
 
 type PreBuildArticleCache struct {

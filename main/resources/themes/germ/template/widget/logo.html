@@ -1,8 +1,8 @@
-<div class="flex-none mr-5 page-title md:text-3xl" style="max-width: 50%;">
+<div class="flex-none mr-8 page-title md:text-3xl" style="max-width: 50%;">
         {{ logo := Widget.LogoURL() }}
     <a href="/" title="{{ Config.Site.Name }}">
         {{ if logo != "" }}
-            <img class="w-32" src="{{logo}}" alt="{{ Config.Site.Name }}" />
+            <img class="w-29" src="{{logo}}" alt="{{ Config.Site.Name }}" />
         {{ else }}
             {{ if Page.Name == "index" }}
                 <h1>{{ Config.Site.Name }}</h1>

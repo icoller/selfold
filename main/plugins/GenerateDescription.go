@@ -1,10 +1,10 @@
 package plugins
 
 import (
-	"moss/domain/core/entity"
-	"moss/domain/core/service"
-	pluginEntity "moss/domain/support/entity"
-	"moss/infrastructure/utils/htmlx"
+	"selfx/domain/core/entity"
+	"selfx/domain/core/service"
+	pluginEntity "selfx/domain/support/entity"
+	"selfx/infra/utils/htmlx"
 )
 
 type GenerateDescription struct {

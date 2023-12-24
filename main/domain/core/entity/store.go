@@ -1,7 +1,7 @@
 package entity
 
 import (
-	"moss/domain/core/vo"
+	"selfx/domain/core/vo"
 )
 
 type Store struct {

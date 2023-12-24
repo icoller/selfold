@@ -1,10 +1,10 @@
 package startup
 
 import (
-	appService "moss/application/service"
-	"moss/infrastructure/general/command"
-	"moss/plugins"
 	"os"
+	appService "selfx/app/service"
+	"selfx/infra/general/command"
+	"selfx/plugins"
 
 	"github.com/gookit/color"
 )

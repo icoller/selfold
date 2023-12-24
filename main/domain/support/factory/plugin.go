@@ -1,16 +1,24 @@
+/*
+ * @Author: coller
+ * @Date: 2023-12-20 21:46:14
+ * @LastEditors: coller
+ * @LastEditTime: 2023-12-24 17:03:08
+ * @Desc:
+ */
 package factory
 
 import (
 	"errors"
 	"fmt"
+	"path/filepath"
+	"selfx/domain/config"
+	"selfx/domain/support/entity"
+	"selfx/infra/general/constant"
+	"selfx/infra/general/message"
+
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"gopkg.in/natefinch/lumberjack.v2"
-	"moss/domain/config"
-	"moss/domain/support/entity"
-	"moss/infrastructure/general/constant"
-	"moss/infrastructure/general/message"
-	"path/filepath"
 )
 
 func NewPlugin(entry entity.PluginEntry) (*entity.Plugin, error) {

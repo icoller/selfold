@@ -2,11 +2,8 @@
 {{import "./component/article_list.html"}}
 
 {{block main()}}
-
     {{ include "./widget/carousel.html" }}
-
-    <div class="card">
+    <div class="">
         {{yield article_list(list=Widget.IndexList())}}
     </div>
-
 {{end}}

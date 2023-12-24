@@ -1,4 +1,3 @@
-
 {{ block article_list(list,titleTag="h2") }}
     <div class="divide-y divide-gray-300 dark:divide-neutral-800 divide-opacity-70">
         {{ range i, v := list }}
@@ -16,13 +15,24 @@
                     {{ if v.Description !=""}}
                     <div class="description">{{ v.Description }} </div>
                     {{ end }}
-                    {{ if v.CreateTime > 0 || v.Views > 0 }}
-                        <div class="meta">
-                            {{ if v.CreateTime > 0 }}
-                                <div><i class="mr-1 icon icon-time"></i>{{ v.CreateTimeFormat("2006-01-02") }}</div>
+                    <div class="flex items-center py-3 ">
+                        {{ tags := Tag().Limit(10).ListByArticleID(v.ID) }}
+                        <ul class="text-sm tags flex">
+                            {{ range i, v := tags }}
+                            <li><a href="{{v.URL()}}"><i class="mr-1 icon icon-tag"></i>{{v.Name}}</a></li>
                             {{ end }}
-                        </div>
-                    {{ end }}
+                        </ul>
+                        {{ if v.CreateTime > 0 || v.Views > 0 }}
+                            <div class="meta">
+                                {{ if v.Views > 0 }}
+                                    <div><i class="mr-1 icon icon-view"></i>{{ v.Views }}</div>
+                                {{ end }}
+                                {{ if v.CreateTime > 0 }}
+                                    <div><i class="mr-1 icon icon-time text-sm"></i>{{ v.CreateTimeFormat("2006-01-02 15:04") }}</div>
+                                {{ end }}
+                            </div>
+                        {{ end }}
+                    </div>
                 </div>
             </div>
         </div>

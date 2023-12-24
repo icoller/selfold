@@ -1,8 +1,15 @@
+/*
+ * @Author: coller
+ * @Date: 2023-12-20 21:46:14
+ * @LastEditors: coller
+ * @LastEditTime: 2023-12-24 17:33:20
+ * @Desc:
+ */
 package service
 
 import (
 	"encoding/json"
-	"moss/domain/config/repository"
+	"selfx/domain/config/repo"
 )
 
 type Config interface {
@@ -19,7 +26,7 @@ func Sync(item Config) error {
 
 // Pull 拉取配置，把数据库中的配置拉取到内存
 func Pull(item Config) error {
-	data, err := repository.Get(item.ConfigID())
+	data, err := repo.Get(item.ConfigID())
 	if err != nil {
 		return err
 	}
@@ -31,12 +38,12 @@ func Push(item Config) error {
 	if err != nil {
 		return err
 	}
-	return repository.Save(item.ConfigID(), data)
+	return repo.Save(item.ConfigID(), data)
 }
 
 // Save 保存配置
 func Save(item Config, data []byte) error {
-	if err := repository.Save(item.ConfigID(), data); err != nil {
+	if err := repo.Save(item.ConfigID(), data); err != nil {
 		return err
 	}
 	return Merge(data, item)

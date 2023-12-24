@@ -41,7 +41,7 @@ tasks:
 
   build:
     - task: build-admin
-    - task: build-linux-amd64
+    - task: build-darwin-arm64
 
   build-all:
     - task: build-admin
@@ -55,7 +55,6 @@ tasks:
     deps: [
       build-linux-386,
       build-linux-amd64,
-      #build-windows-386,
       build-windows-amd64,
       build-darwin-amd64,
       build-darwin-arm64,
@@ -105,7 +104,7 @@ tasks:
   ######
   _build:
     vars:
-      FILE_NAME: 'moss_{{.GOOS}}_{{.GOARCH}}{{.FILE_EXT}}'
+      FILE_NAME: 'gocms_{{.GOOS}}_{{.GOARCH}}{{.FILE_EXT}}'
       BUILD_FILE_PATH: '{{.ROOT_DIR}}/dist/{{.FILE_NAME}}'
       BACKUP_FILE_PATH: '{{.ROOT_DIR}}/dist/backup/{{.FILE_NAME}}_{{now | date "2006.01.02.15.04.05"}}'
     env:

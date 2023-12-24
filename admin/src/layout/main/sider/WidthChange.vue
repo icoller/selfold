@@ -1,3 +1,10 @@
+<!--
+ * @Author: coller
+ * @Date: 2023-12-20 21:46:14
+ * @LastEditors: coller
+ * @LastEditTime: 2023-12-24 16:53:45
+ * @Desc:  
+-->
 <template>
   <div class="absolute bottom-1 right-1 z-10 cursor-pointer text-gray-300 hover:text-gray-400 transition"
        :class="{'text-gray-600':store.dark}" v-if="!store.siderCollapsed"
@@ -45,6 +52,6 @@
 
 
  function doubleClick(){
-   store.siderWidth = 180
+   store.siderWidth = 130
  }
 </script>

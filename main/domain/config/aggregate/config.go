@@ -1,9 +1,9 @@
 package aggregate
 
 import (
-	"moss/domain/config/entity"
-	"moss/domain/config/service"
-	"moss/infrastructure/general/message"
+	"selfx/domain/config/entity"
+	"selfx/domain/config/service"
+	"selfx/infra/general/message"
 )
 
 type Config struct {

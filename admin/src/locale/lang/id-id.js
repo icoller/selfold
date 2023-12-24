@@ -155,8 +155,8 @@ export default {
     random:'Acak',
     tls:'TLS',
     needRestartApp:'Memerlukan restart aplikasi untuk berlaku',
-    mossAbout:'Moss berarti lumut atau lumut hijau. Saya harap Moss dapat sekuat lumut, tumbuh subur di mana-mana.',
-    mossInstructions:'Program ini bersifat open-source dengan lisensi MIT dan sepenuhnya gratis untuk digunakan. Silakan gunakan dengan percaya diri. Jika Anda memiliki pertanyaan, Anda dapat berkomunikasi dengan penulis. Jangan gunakan untuk tujuan ilegal.',
+    selfxAbout:'selfX berarti lumut atau lumut hijau. Saya harap selfX dapat sekuat lumut, tumbuh subur di mana-mana.',
+    selfxInstructions:'Program ini bersifat open-source dengan lisensi MIT dan sepenuhnya gratis untuk digunakan. Silakan gunakan dengan percaya diri. Jika Anda memiliki pertanyaan, Anda dapat berkomunikasi dengan penulis. Jangan gunakan untuk tujuan ilegal.',
 
 
 

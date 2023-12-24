@@ -2,14 +2,15 @@ package plugins
 
 import (
 	"fmt"
-	"go.uber.org/zap"
-	appService "moss/application/service"
-	"moss/domain/core/entity"
-	"moss/domain/core/repository/context"
-	"moss/domain/core/service"
-	pluginEntity "moss/domain/support/entity"
-	"moss/infrastructure/persistent/db"
+	appService "selfx/app/service"
+	"selfx/domain/core/entity"
+	"selfx/domain/core/repo/context"
+	"selfx/domain/core/service"
+	pluginEntity "selfx/domain/support/entity"
+	"selfx/infra/persistent/db"
 	"sync"
+
+	"go.uber.org/zap"
 )
 
 type PostStore struct {

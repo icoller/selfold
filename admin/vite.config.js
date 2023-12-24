@@ -9,10 +9,10 @@ export default defineConfig({
   base: process.env.NODE_ENV === "production" ? "/{{__DIR__}}/" : "/",
   server:{
     host:"0.0.0.0",
-    port:3000,
+    port:3777,
     proxy:{
       '/admin/api': {
-        target: 'http://127.0.0.1:8989/',
+        target: 'http://127.0.0.1:7777/',
         changeOrigin: true,
       },
     },
@@ -42,9 +42,9 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask_icon.svg'],
       manifest:{
-        name:"moss",
-        short_name:"moss",
-        description: 'Moss Administration',
+        name:"selfx",
+        short_name:"selfx",
+        description: 'selfx Administration',
         //theme_color: '#ffffff',
         icons: [
           {

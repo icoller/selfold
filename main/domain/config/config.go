@@ -1,8 +1,8 @@
 package config
 
 import (
-	"moss/domain/config/aggregate"
-	"moss/domain/config/service"
+	"selfx/domain/config/aggregate"
+	"selfx/domain/config/service"
 )
 
 var Config = aggregate.NewConfig()

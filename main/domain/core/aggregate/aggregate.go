@@ -1,7 +1,7 @@
 package aggregate
 
 import (
-	"moss/domain/core/entity"
+	"selfx/domain/core/entity"
 )
 
 type EntityInterface interface {

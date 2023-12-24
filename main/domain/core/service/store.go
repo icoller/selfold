@@ -1,10 +1,10 @@
 package service
 
 import (
-	"moss/domain/core/entity"
-	"moss/domain/core/repository"
-	"moss/domain/core/repository/context"
-	"moss/infrastructure/general/message"
+	"selfx/domain/core/entity"
+	"selfx/domain/core/repo"
+	"selfx/domain/core/repo/context"
+	"selfx/infra/general/message"
 	"strings"
 	"time"
 )
@@ -21,7 +21,7 @@ func (s *StoreService) Create(item *entity.Store) (err error) {
 	if item.StoreCreateTime == 0 {
 		item.StoreCreateTime = time.Now().Unix()
 	}
-	return repository.Store.Create(item)
+	return repo.Store.Create(item)
 }
 
 func (s *StoreService) Update(item *entity.Store) (err error) {
@@ -31,7 +31,7 @@ func (s *StoreService) Update(item *entity.Store) (err error) {
 	if err = s.postCheck(item); err != nil {
 		return
 	}
-	return repository.Store.Update(item)
+	return repo.Store.Update(item)
 }
 
 func (s *StoreService) postCheck(item *entity.Store) error {
@@ -54,7 +54,7 @@ func (s *StoreService) Delete(id int) (err error) {
 	if id == 0 {
 		return message.ErrIdRequired
 	}
-	return repository.Store.Delete(id)
+	return repo.Store.Delete(id)
 }
 
 func (s *StoreService) BatchDelete(ids []int) (err error) {
@@ -70,7 +70,7 @@ func (s *StoreService) Get(id int) (res *entity.Store, err error) {
 	if id == 0 {
 		return nil, message.ErrIdRequired
 	}
-	if res, err = repository.Store.Get(id); err != nil {
+	if res, err = repo.Store.Get(id); err != nil {
 		return
 	}
 	if res.ID == 0 {
@@ -80,26 +80,26 @@ func (s *StoreService) Get(id int) (res *entity.Store, err error) {
 }
 
 func (s *StoreService) CountByWhere(where *context.Where) (res int64, err error) {
-	return repository.Store.CountByWhere(where)
+	return repo.Store.CountByWhere(where)
 }
 
 // CountTotal 统计文章总数
 func (s *StoreService) CountTotal() (int64, error) {
-	return repository.Store.CountTotal()
+	return repo.Store.CountTotal()
 }
 
 // CountToday 统计今日添加数量
 func (s *StoreService) CountToday() (int64, error) {
-	return repository.Store.CountToday()
+	return repo.Store.CountToday()
 }
 
 // CountYesterday 统计昨日添加数量
 func (s *StoreService) CountYesterday() (int64, error) {
-	return repository.Store.CountYesterday()
+	return repo.Store.CountYesterday()
 }
 
 func (s *StoreService) List(ctx *context.Context) (res []entity.Store, err error) {
-	res, err = repository.Store.List(ctx)
+	res, err = repo.Store.List(ctx)
 	return
 }
 
@@ -112,6 +112,6 @@ func (s *StoreService) ListByCategoryIds(ctx *context.Context, ids []int) (res [
 	if len(ids) == 0 {
 		return
 	}
-	res, err = repository.Store.ListByCategoryIds(ctx, ids)
+	res, err = repo.Store.ListByCategoryIds(ctx, ids)
 	return
 }

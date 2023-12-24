@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"moss/infrastructure/general/constant"
-	"moss/infrastructure/persistent/storage/facade"
 	"net/url"
+	"selfx/infra/general/constant"
+	"selfx/infra/persistent/storage/facade"
 	"strings"
 )
 

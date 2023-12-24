@@ -1,7 +1,7 @@
 package entity
 
 import (
-	"moss/domain/config"
+	"selfx/domain/config"
 	"strconv"
 	"strings"
 	"time"
